@@ -44,14 +44,14 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPostById(@PathVariable  Long id){
-        Optional<Post> post = postService.getPostsByUserId(id);
+        Optional<Post> post = postService.getPostById(id);
         return post.map(value -> new ResponseEntity<>(value,HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @Valid @RequestBody PostRequest postRequest){
-        Post postDetails = new Post();
+        Post postDetails = new Post ();
         postDetails.setContent(postRequest.getContent());
         postDetails.setTitle(postRequest.getTitle());
 
